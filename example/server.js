@@ -52,7 +52,7 @@ async function serveFile (res, filePath, contentType) {
     res.end(contents);
 }
 
-async function processPostRequest (req, res) {
+function processPostRequest (req, res) {
     let postData = '';
 
     return new Promise((resolve, reject) => {
@@ -69,7 +69,7 @@ async function processPostRequest (req, res) {
     });
 }
 
-async function handleProxyRequest (req, res) {
+function handleProxyRequest (req, res) {
     let postData = '';
 
     req.on('data', chunk => {
