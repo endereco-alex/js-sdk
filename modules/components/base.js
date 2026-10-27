@@ -90,7 +90,12 @@ function EnderecoBase () {
                     clearTimeout(timeoutObject);
                     clearInterval(intervalObject);
                     console.log('Timeout!');
-                    reject();
+
+                    const missingExtensions = extensions.filter(function (extensionName) {
+                        return !$self.hasLoadedExtension(extensionName);
+                    });
+
+                    reject(new Error(`Timeout while waiting for extensions: ${missingExtensions.join(', ')}`));
                 }, timeout * 1000); // Transform seconds to milliseconds.
             });
         },
